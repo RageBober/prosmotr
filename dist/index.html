@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Просмотрщик</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app" class="no-toc">
+
+  <aside id="sidebar">
+    <div class="side-head">
+      <div class="row">
+        <div class="folder-name" id="folderName">Папка не выбрана</div>
+        <button class="btn" id="btnPick">Открыть</button>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Фильтр по имени…" autocomplete="off">
+    </div>
+    <nav id="fileTree"><div class="empty-list">Откройте папку —<br>файлы появятся здесь</div></nav>
+    <div class="side-foot">
+      <button class="btn" id="btnCollapseAll" title="Свернуть все папки">Свернуть</button>
+      <button class="btn" id="btnRefresh">Обновить</button>
+      <button class="btn" id="btnTheme">Тема</button>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div class="seg">
+        <button class="icon-btn active" id="btnRender" title="Просмотр">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
+        </button>
+        <button class="icon-btn" id="btnSource" title="Исходный текст">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17l-5-5 5-5"/><path d="M15 7l5 5-5 5"/></svg>
+        </button>
+      </div>
+      <div class="doc-title">
+        <span class="name" id="docName">Документ не выбран</span>
+        <span class="dot">·</span>
+        <span class="badge" id="docExt">—</span>
+        <span class="meta" id="docMeta"></span>
+      </div>
+      <div class="spacer"></div>
+      <button class="icon-btn active" id="btnTabs" title="Свернуть вкладки">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="7" height="14" rx="1.6"/><path d="M13 5h8M13 12h8M13 19h5"/></svg>
+      </button>
+      <button class="icon-btn active" id="btnSide" title="Список файлов">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16"/></svg>
+      </button>
+      <button class="icon-btn" id="btnToc" title="Оглавление">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h10M4 12h16M4 18h12"/></svg>
+      </button>
+      <button class="icon-btn" id="btnFull" title="Во весь экран">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>
+      </button>
+    </header>
+
+    <div id="tabs" class="tabs"></div>
+
+    <div id="scroller">
+      <section id="empty">
+        <h2>Просмотрщик</h2>
+        <p>markdown · pdf · таблицы · документы · данные · картинки · код</p>
+        <div id="drop">
+          <button class="btn primary" id="btnPick2">Выбрать папку</button>
+          <div class="hint">
+            <span class="kbd">Ctrl</span>+<span class="kbd">K</span> — фильтр ·
+            <span class="kbd">Ctrl</span>+<span class="kbd">Tab</span> — вкладки ·
+            <span class="kbd">Ctrl</span>+<span class="kbd">W</span> — закрыть
+          </div>
+        </div>
+      </section>
+      <div id="view"></div>
+    </div>
+  </main>
+
+  <aside id="toc"><div class="t">Оглавление</div><div id="tocList"></div></aside>
+</div>
+<script src="vendor/hljs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
