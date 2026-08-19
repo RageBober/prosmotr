@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Просмотрщик
+GenericName=Просмотр документов и данных
+Comment=markdown, pdf, таблицы, документы, данные, картинки и код
+Exec={{exec}} %U
+Icon={{icon}}
+Terminal=false
+Categories=Utility;Office;
+StartupWMClass=prosmotr
+MimeType=inode/directory;text/markdown;text/plain;text/csv;text/tab-separated-values;application/pdf;application/json;application/xml;text/xml;application/toml;application/yaml;application/x-yaml;application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.ms-excel;application/vnd.oasis.opendocument.text;application/vnd.oasis.opendocument.spreadsheet;image/png;image/jpeg;image/gif;image/webp;image/svg+xml;
