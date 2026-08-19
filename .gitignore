@@ -1,0 +1,7 @@
+target/
+src-tauri/gen/
+
+# готовые бинарники и пакеты — им место в Releases, а не в истории
+prebuilt/
+*.deb
+*.AppImage
