@@ -1,0 +1,42 @@
+name: сборка и тесты
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  core:
+    name: тесты ядра
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      # ядро не зависит от GUI, поэтому webkit здесь не нужен вовсе
+      - run: cargo test -p prosmotr-core --verbose
+
+  app:
+    name: сборка приложения
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: системные зависимости
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev patchelf
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo build --release
+      - name: собрать пакеты
+        run: |
+          cargo install tauri-cli --version "^2" --locked
+          cargo tauri build --bundles deb
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prosmotr-deb
+          path: target/release/bundle/deb/*.deb
